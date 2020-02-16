@@ -3,7 +3,7 @@
 # Authors: @MTRNord:matrix.ffslfl.net @grigruss:matrix.org
 
 # Specify the path to the web server directory
-WWW="/www/html/"
+WWW="/var/www/"
 
 # Get the content to determine the latest version.
 content=$(curl -s https://api.github.com/repos/vector-im/riot-web/releases/latest)
@@ -24,24 +24,25 @@ then
     download_url=$(jq -r '.assets[] | select((.content_type == "application/x-gzip") or (.content_type == "application/octet-stream")) | .browser_download_url | select(contains("asc") | not)' <<<"$content")
     if [ "$download_url" != "" ]
     then
-        # If there is no Riot-web directory, it will be created.
-        if [ ! -d ./Riot-web ]
+        # If there is no riot directory, it will be created.
+        if [ ! -d ./riot ]
         then
-            mkdir Riot-web
+            mkdir riot
         fi
 
         echo "New Version found starting download"
-        curl -Ls "$download_url" | tar xz --strip-components=1 -C ./Riot-web/
+        curl -Ls "$download_url" | tar xz --strip-components=1 -C ./riot/
         echo "$package_id" > ./riot_version-id
         echo "The new version is downloaded. Copying to the web server directory begins."
 
         # Uncomment for save your logos
-        # rm -rf ./Riot-web/img/logos
+        # rm -rf ./riot/img/logos
 
         # Copy the new version of Riot to the web server directory
-        cp -r ./Riot-web/* $WWW
-        # Delete the new version from the Riot-web buffer directory
-        rm -rf ./Riot-web
+        cp -r ./riot/* $WWW
+        # Delete the new version from the riot buffer directory
+        rm -rf ./riot
+        chown -R www-data: ./riot
         echo "Copying to the web server directory finished. Exiting..."
         exit 0
     else
