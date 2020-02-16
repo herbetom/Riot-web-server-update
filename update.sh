@@ -3,7 +3,7 @@
 # Authors: @MTRNord:matrix.ffslfl.net @grigruss:matrix.org
 
 # Specify the path to the web server directory
-WWW="/var/www/"
+WWW="/var/www/riot/"
 
 # Get the content to determine the latest version.
 content=$(curl -s https://api.github.com/repos/vector-im/riot-web/releases/latest)
@@ -15,7 +15,8 @@ package_id=$(jq -r '.id' <<<"$content")
 # Ensure existens of the WWW directory
 if [ ! -d $WWW ]
 then
-    mkdir $WWW
+    echo "create the direcotry for riot first"
+    exit 1
 fi
 
 # If the versions are different, we begin the update
