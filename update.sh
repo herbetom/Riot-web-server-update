@@ -38,12 +38,16 @@ then
 
         # Uncomment for save your logos
         # rm -rf ./riot/img/logos
-
+        
+        # Owner anpassen
+        chown -R www-data: ./riot
+        
         # Copy the new version of Riot to the web server directory
         cp -r ./riot/* $WWW
+        
         # Delete the new version from the riot buffer directory
         rm -rf ./riot
-        chown -R www-data: ./riot
+        
         echo "Copying to the web server directory finished. Exiting..."
         exit 0
     else
