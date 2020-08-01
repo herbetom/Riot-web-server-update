@@ -1,10 +1,6 @@
-# Riot-web-server-update
+# Element-web-server-update
 
-[![Build Status](https://travis-ci.org/grigruss/Riot-web-server-update.svg?branch=master)](https://travis-ci.org/grigruss/Riot-web-server-update)
-[![GitHub License](https://img.shields.io/github/license/grigruss/Riot-web-server-update.svg)](https://github.com/grigruss/Riot-web-server-update/blob/master/LICENSE.md)
-[![GitHub Release](https://img.shields.io/github/release/grigruss/Riot-web-server-update.svg)](https://github.com/grigruss/Riot-web-server-update/releases)
-
-Bash script to update the Riot-web on your site
+Bash script to update the Element-web on your site
 
 Authors: @MTRNord:matrix.ffslfl.net @grigruss:matrix.org
 ```
